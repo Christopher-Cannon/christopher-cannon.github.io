@@ -15,8 +15,8 @@ let json = {
       "{genre} which makes you {emotion} {things}",
       "a cross between {genre} and {genre} in which you {action} {things}",
       "a cross between {genre} and {genre} in which you {adverb} {action} {things}",
-      "{genre} that's also a {genre} that sees you {action} {things}",
-      "{genre} that's also a {genre} that sees you {adverb} {action} {things}"
+      "{genre} that's also {genre} that sees you {action} {things}",
+      "{genre} that's also {genre} that sees you {adverb} {action} {things}"
     ],
     "grammar" : {
       "genre" : [
