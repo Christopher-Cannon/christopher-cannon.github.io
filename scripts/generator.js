@@ -74,7 +74,6 @@ let json = {
         "invest in",
         "debate",
         "construct",
-        "cure",
         "research",
         "become haunted by",
         "become angry about",
@@ -337,6 +336,7 @@ function generate() {
   let chosenPattern = getRandomInt(0, patterns.length);
   let addendum = getRandomInt(0, grammar['addendum'].length);
   let regex = /[{][a-z]+[}]/gm;
+  let lastGenre = '';
 
   // Built sentence structure
   let currentIdea = patterns[chosenPattern] + grammar['addendum'][addendum];
@@ -349,15 +349,22 @@ function generate() {
     var block = p[0].substr(1, p[0].length - 2);
 
     var r = new RegExp("[{][" + block + "]+[}]");
+    var replace = replaceStr(grammar[block], currentIdea);
 
-    currentIdea = replaceStr(grammar[block], currentIdea, r)
+    if (block === 'genre') {
+      // Try to find a new genre that doesn't match the last
+      while(replace === lastGenre) {
+        replace = replaceStr(grammar[block], currentIdea);
+      }
+      lastGenre = replace;
+    }
+    currentIdea = currentIdea.replace(r, replace);
   }
   idea.innerHTML = currentIdea;
   console.log(currentIdea);
 }
 
-function replaceStr(arr, str, regex) {
+function replaceStr(arr, str) {
   let rno = getRandomInt(0, arr.length);
-  let replace = arr[rno];
-  return str.replace(regex, replace);
+  return arr[rno];
 }
