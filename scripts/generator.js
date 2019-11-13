@@ -67,6 +67,15 @@ let json = {
         "rebel against",
         "fight with",
         "wrestle with",
+        "investigate",
+        "uncover",
+        "discover",
+        "explore",
+        "invest in",
+        "debate",
+        "construct",
+        "cure",
+        "research",
         "become haunted by",
         "become angry about",
         "customise",
@@ -74,7 +83,6 @@ let json = {
         "generate",
         "defeat",
         "manage",
-        "hug",
         "wage war against",
         "weaponise",
         "reinvent",
@@ -93,6 +101,7 @@ let json = {
       "things" : [
         "communism",
         "capitalism",
+        "post-modernism",
         "politics",
         "telemarketers",
         "people",
@@ -126,6 +135,10 @@ let json = {
         "the Earth",
         "the Moon",
         "the Sun",
+        "Mars",
+        "heaven",
+        "hell",
+        "the underworld",
         "the United States",
         "Europe",
         "Africa",
@@ -133,6 +146,8 @@ let json = {
         "Japan",
         "China",
         "France",
+        "Italy",
+        "Russia",
         "employment",
         "mathematics",
         "physics",
@@ -143,6 +158,7 @@ let json = {
         "the Prime Minister of Great Britain",
         "scissors",
         "spaghetti",
+        "guns",
         "robots",
         "the mafia",
         "plague",
@@ -152,7 +168,7 @@ let json = {
         "Todd Howard",
         "Nazi Germany",
         "Soviet Russia",
-        "the Cold War",
+        "the government",
         "puns",
         "anything",
         "everything",
@@ -179,7 +195,7 @@ let json = {
         "hard",
         "boring",
         "dull",
-        "invigoration",
+        "invigorating",
         "exciting",
         "harrowing",
         "existential",
@@ -192,7 +208,8 @@ let json = {
         "enjoy",
         "detest",
         "hallucinate",
-        "imagine"
+        "imagine",
+        "question"
       ],
       "adverb" : [
         "quickly",
@@ -202,10 +219,16 @@ let json = {
         "badly",
         "poorly",
         "silently",
+        "quietly",
+        "horrifically",
+        "cautiously",
+        "ironically",
+        "unironically",
         "accidentally",
         "deliberately",
         "competitively",
-        "ironically"
+        "indifferently",
+        "angrily"
       ],
       "inspiration" : [
         "The Lord of the Rings",
@@ -221,7 +244,9 @@ let json = {
         "Greek mythology",
         "World War 1",
         "World War 2",
-        "the war on drugs"
+        "the war on drugs",
+        "a true story",
+        "historical events"
       ],
       "mechanic" : [
         "loot boxes",
@@ -234,6 +259,9 @@ let json = {
         "precision platforming",
         "wall running",
         "perma-death",
+        "RPG mechanics",
+        "online leaderboards",
+        "a complex story",
         "difficult decisions with lasting consequences"
       ],
       "addendum" : [
@@ -244,8 +272,10 @@ let json = {
         " to make money.",
         ", {things} not included.",
         " with {things}.",
-        " who {action} {things}.",
-        " who {adverb} {action} {things}.",
+        " thanks to {things}.",
+        " for {things}.",
+        " to {action} {things}.",
+        " to {adverb} {action} {things}.",
         " {adverb}.",
         " and make {adjective} decisions.",
         " for your personal gain.",
@@ -254,10 +284,11 @@ let json = {
         " and it's really {adjective}.",
         ", but it's {adjective}.",
         ", or so you think.",
-        ", but halfway through there's a twist.",
+        ", but there's a shocking twist.",
         " in virtual reality",
         " but it's all in your head.",
         " and you {emotion} every minute of it.",
+        " and you can't help but {emotion} it.",
         " and there are microtransactions.",
         " but it's secretly controlled by {things}.",
         " and you can {action} your house.",
@@ -266,8 +297,11 @@ let json = {
         " and you can {adverb} {action} your life.",
         " in an alternate universe.",
         ", inspired by {inspiration}.",
+        ", based on {inspiration}.",
+        " and borrows elements from {inspiration}.",
         ", featuring Dante from the Devil May Cry series!",
         " and it's grindy as hell.",
+        " and it's an MMO.",
         " and later introduces elements of {things}.",
         " and early on you're given {things} that you can {action}.",
         " with the addition of {things}.",
@@ -303,62 +337,27 @@ function generate() {
   let chosenPattern = getRandomInt(0, patterns.length);
   let addendum = getRandomInt(0, grammar['addendum'].length);
   let regex = /[{][a-z]+[}]/gm;
-  let rno = 0;
-  let replace = '';
 
+  // Built sentence structure
   let currentIdea = patterns[chosenPattern] + grammar['addendum'][addendum];
 
-  // Determine how many matches to make
+  // Place all matches in an array
   let placeholders = [...currentIdea.matchAll(regex)];
 
+  // Replace each match one at a time
   for (const p of placeholders) {
-    switch(p[0]) {
-      case '{genre}':
-        currentIdea = replaceStr(grammar['genre'], currentIdea, /[{][genre]+[}]/)
-        break;
+    var block = p[0].substr(1, p[0].length - 2);
 
-      case '{things}':
-        currentIdea = replaceStr(grammar['things'], currentIdea, /[{][things]+[}]/)
-        break;
+    var r = new RegExp("[{][" + block + "]+[}]");
 
-      case '{action}':
-        currentIdea = replaceStr(grammar['action'], currentIdea, /[{][action]+[}]/)
-        break;
-
-      case '{adjective}':
-        currentIdea = replaceStr(grammar['adjective'], currentIdea, /[{][adjective]+[}]/)
-        break;
-
-      case '{emotion}':
-        currentIdea = replaceStr(grammar['emotion'], currentIdea, /[{][emotion]+[}]/)
-        break;
-
-      case '{adverb}':
-        currentIdea = replaceStr(grammar['adverb'], currentIdea, /[{][adverb]+[}]/)
-        break;
-
-      case '{inspiration}':
-        currentIdea = replaceStr(grammar['inspiration'], currentIdea, /[{][inspiration]+[}]/)
-        break;
-
-      case '{mechanic}':
-        currentIdea = replaceStr(grammar['mechanic'], currentIdea, /[{][mechanic]+[}]/)
-        break;
-
-      case '{addendum}':
-        currentIdea = replaceStr(grammar['addendum'], currentIdea, /[{][addendum]+[}]/)
-        break;
-
-      default:
-        break;
-    }
+    currentIdea = replaceStr(grammar[block], currentIdea, r)
   }
   idea.innerHTML = currentIdea;
   console.log(currentIdea);
 }
 
 function replaceStr(arr, str, regex) {
-  rno = getRandomInt(0, arr.length);
-  replace = arr[rno];
+  let rno = getRandomInt(0, arr.length);
+  let replace = arr[rno];
   return str.replace(regex, replace);
 }
