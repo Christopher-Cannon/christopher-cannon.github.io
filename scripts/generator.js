@@ -1,7 +1,7 @@
 let json = {
   "words" :
   {
-    "patterns" :
+    "start" :
     [
       "{genre} where you {action} {things}",
       "{genre} where you {adverb} {action} {things}",
@@ -12,11 +12,62 @@ let json = {
       "{genre} which invites you to {action} {things}",
       "{genre} which invites you to {adverb} {action} {things}",
       "{genre} which questions the nature of {things}",
+      "{genre} where {things} is the main focus",
       "{genre} which makes you {emotion} {things}",
       "a cross between {genre} and {genre} in which you {action} {things}",
       "a cross between {genre} and {genre} in which you {adverb} {action} {things}",
       "{genre} that's also {genre} that sees you {action} {things}",
       "{genre} that's also {genre} that sees you {adverb} {action} {things}"
+    ],
+    "end" : [
+      ".",
+      " {adverb}.",
+      " but no-one cares.",
+      " for no real point.",
+      " to make money.",
+      ", {things} not included.",
+      " with {things}.",
+      " thanks to {things}.",
+      " for {things}.",
+      " to {action} {things}.",
+      " to {adverb} {action} {things}.",
+      " {adverb}.",
+      " and make {adjective} decisions.",
+      " {reason}.",
+      ", all {reason}.",
+      " and it's all {reason}.",
+      " but it gets weirder.",
+      " but it's a metaphor about {things}.",
+      " and it's really {adjective}.",
+      ", but it's {adjective}.",
+      ", or so you think.",
+      ", but there's a shocking twist.",
+      " but it's all in your head.",
+      " and you {emotion} every minute of it.",
+      " and you can't help but {emotion} it.",
+      " and there are microtransactions.",
+      " and it makes you reflect on {things}.",
+      " and it makes you think about {things}.",
+      " but it's secretly controlled by {things}.",
+      " and you can {action} your house.",
+      " and you can {adverb} {action} your house.",
+      " and you can {action} your life.",
+      " and you can {adverb} {action} your own life.",
+      ", inspired by {inspiration}.",
+      " - based on {inspiration}.",
+      " and borrows elements from {inspiration}.",
+      ", featuring Dante from the Devil May Cry series!",
+      " and it's grindy as hell.",
+      " and later introduces elements of {things}.",
+      " and early on you're given {things} that you can {action}.",
+      " with the addition of {things}.",
+      " and there's a day/night cycle.",
+      " with the power of {things}.",
+      " and it includes {mechanic}.",
+      " with {mechanic}.",
+      " and it makes use of {mechanic}.",
+      " in {location}.",
+      " and it all takes place in {location}."
     ],
     "grammar" : {
       "genre" : [
@@ -25,13 +76,30 @@ let json = {
         "a JRPG",
         "a god game",
         "an RPG",
+        "an MMORPG",
         "an action game",
         "an action adventure",
         "a collectathon",
+        "a platformer",
+        "a free to play game",
         "a racing game",
+        "a driving game",
         "a mobile game",
+        "a visual novel",
+        "a point and click",
+        "a loot shooter",
+        "a battle royale",
+        "a flash game",
+        "a rhythm game",
         "a browser game",
         "a casual game",
+        "a puzzle game",
+        "a simulator game",
+        "a metroidvania",
+        "a grand strategy game",
+        "a real-time strategy",
+        "a turn-based strategy",
+        "a 4X strategy",
         "a fighting game",
         "a beat-em up",
         "a shoot-em up",
@@ -43,6 +111,7 @@ let json = {
         "a clicker game",
         "a game by Hideo Kojima",
         "a game by Peter Molyneaux",
+        "a game by Sid Meier",
         "an indie game"
       ],
       "action" : [
@@ -58,6 +127,7 @@ let json = {
         "embrace",
         "disregard",
         "kill",
+        "edit",
         "evade",
         "simulate",
         "observe",
@@ -71,6 +141,12 @@ let json = {
         "uncover",
         "discover",
         "explore",
+        "hack",
+        "analyse",
+        "criticise",
+        "befriend",
+        "argue with",
+        "boycott",
         "invest in",
         "debate",
         "construct",
@@ -84,6 +160,7 @@ let json = {
         "manage",
         "wage war against",
         "weaponise",
+        "sell",
         "reinvent",
         "create",
         "undermine",
@@ -103,15 +180,19 @@ let json = {
         "post-modernism",
         "politics",
         "telemarketers",
+        "nightmares",
+        "existential dread",
+        "anxiety",
+        "depression",
         "people",
         "the masses",
+        "eldritch horrors",
         "schools",
         "the economy",
         "disappointment",
         "the free market",
         "yourself",
         "marketing",
-        "Tuesday",
         "Christianity",
         "the environment",
         "climate change",
@@ -132,6 +213,7 @@ let json = {
         "terrorism",
         "the Titanic",
         "the Earth",
+        "the Earth's resources",
         "the Moon",
         "the Sun",
         "Mars",
@@ -139,6 +221,7 @@ let json = {
         "hell",
         "the underworld",
         "the United States",
+        "the merchant navy",
         "Europe",
         "Africa",
         "Asia",
@@ -146,17 +229,24 @@ let json = {
         "China",
         "France",
         "Italy",
+        "addiction",
         "Russia",
+        "skeletons",
+        "giant rats",
         "employment",
         "mathematics",
         "physics",
         "philosophy",
+        "atheism",
+        "happiness",
+        "sadness",
+        "loneliness",
+        "clouds",
         "video games",
         "progress",
         "the President of the United States of America",
-        "the Prime Minister of Great Britain",
-        "scissors",
-        "spaghetti",
+        "the internet",
+        "the military",
         "guns",
         "robots",
         "the mafia",
@@ -168,6 +258,7 @@ let json = {
         "Nazi Germany",
         "Soviet Russia",
         "the government",
+        "the power of friendship",
         "puns",
         "anything",
         "everything",
@@ -205,20 +296,31 @@ let json = {
         "hate",
         "loathe",
         "enjoy",
+        "doubt",
         "detest",
         "hallucinate",
         "imagine",
-        "question"
+        "question",
+        "overthink"
       ],
       "adverb" : [
         "quickly",
         "beautifully",
         "easily",
+        "smoothly",
         "cruelly",
         "badly",
+        "slowly",
         "poorly",
+        "skilfully",
+        "deftly",
         "silently",
         "quietly",
+        "stealthily",
+        "confidently",
+        "reluctantly",
+        "unknowingly",
+        "unwittingly",
         "horrifically",
         "cautiously",
         "ironically",
@@ -261,70 +363,57 @@ let json = {
         "RPG mechanics",
         "online leaderboards",
         "a complex story",
+        "long cutscenes",
+        "love polygons",
+        "branching questlines",
+        "difficult moral choices",
         "difficult decisions with lasting consequences"
       ],
-      "addendum" : [
-        ".",
-        " {adverb}.",
-        " but no-one cares.",
-        " for no real point.",
-        " to make money.",
-        ", {things} not included.",
-        " with {things}.",
-        " thanks to {things}.",
-        " for {things}.",
-        " to {action} {things}.",
-        " to {adverb} {action} {things}.",
-        " {adverb}.",
-        " and make {adjective} decisions.",
-        " for your personal gain.",
-        " but it gets weirder.",
-        " but it's a metaphor about {things}.",
-        " and it's really {adjective}.",
-        ", but it's {adjective}.",
-        ", or so you think.",
-        ", but there's a shocking twist.",
-        " in virtual reality",
-        " but it's all in your head.",
-        " and you {emotion} every minute of it.",
-        " and you can't help but {emotion} it.",
-        " and there are microtransactions.",
-        " but it's secretly controlled by {things}.",
-        " and you can {action} your house.",
-        " and you can {adverb} {action} your house.",
-        " and you can {action} your life.",
-        " and you can {adverb} {action} your life.",
-        " in an alternate universe.",
-        ", inspired by {inspiration}.",
-        ", based on {inspiration}.",
-        " and borrows elements from {inspiration}.",
-        ", featuring Dante from the Devil May Cry series!",
-        " and it's grindy as hell.",
-        " and it's an MMO.",
-        " and later introduces elements of {things}.",
-        " and early on you're given {things} that you can {action}.",
-        " with the addition of {things}.",
-        " and there's a day/night cycle.",
-        " with the power of {things}.",
-        " and it includes {mechanic}.",
-        " with {mechanic}.",
-        " and it makes use of {mechanic}.",
-        " in 3D.",
-        " in 2D.",
-        " in the future.",
-        " in the past.",
-        " in another world.",
-        " in a fantasy world.",
-        " in a dystopian world.",
-        " in a post-apocalyptic world.",
-        " in the modern world."
+      "location": [
+        "the future",
+        "the near future",
+        "the distant future",
+        "the past",
+        "the distant past",
+        "another world",
+        "an alternate universe",
+        "an alternate timeline",
+        "a fantasy world",
+        "a dystopian world",
+        "a post-apocalyptic world",
+        "the modern world",
+        "Russia",
+        "the United States of America",
+        "Japan",
+        "Mexico",
+        "heaven",
+        "the underworld",
+        "hell",
+        "outer space",
+        "a Martian colony",
+        "2D",
+        "3D",
+        "virtual reality",
+        "the cloud",
+        "summer",
+        "winter",
+        "deep winter"
+      ],
+      "reason" : [
+        "for personal gain",
+        "to make friends",
+        "to collect treasure",
+        "to better understand society",
+        "to get higher scores that your friends",
+        "for research purposes",
+        "for your entertainment"
       ]
     }
   }
 };
 
-let patterns = json['words']['patterns'];
-// genre, things, action, adjective, emotion, adverb, addendum
+let start = json['words']['start'];
+let end = json['words']['end'];
 let grammar = json['words']['grammar'];
 let idea = document.getElementById('idea');
 
@@ -332,14 +421,19 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * Math.floor(max)) + min;
 }
 
+function replaceStr(arr, str) {
+  let rno = getRandomInt(0, arr.length);
+  return arr[rno];
+}
+
 function generate() {
-  let chosenPattern = getRandomInt(0, patterns.length);
-  let addendum = getRandomInt(0, grammar['addendum'].length);
+  let chosenStart = getRandomInt(0, start.length);
+  let chosenEnd = getRandomInt(0, end.length);
   let regex = /[{][a-z]+[}]/gm;
   let lastGenre = '';
 
   // Built sentence structure
-  let currentIdea = patterns[chosenPattern] + grammar['addendum'][addendum];
+  let currentIdea = start[chosenStart] + end[chosenEnd];
 
   // Place all matches in an array
   let placeholders = [...currentIdea.matchAll(regex)];
@@ -362,9 +456,4 @@ function generate() {
   }
   idea.innerHTML = currentIdea;
   console.log(currentIdea);
-}
-
-function replaceStr(arr, str) {
-  let rno = getRandomInt(0, arr.length);
-  return arr[rno];
 }
