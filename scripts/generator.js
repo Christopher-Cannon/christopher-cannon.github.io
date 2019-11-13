@@ -404,7 +404,7 @@ let json = {
         "to make friends",
         "to collect treasure",
         "to better understand society",
-        "to get higher scores that your friends",
+        "to get higher scores than your friends",
         "for research purposes",
         "for your entertainment"
       ]
